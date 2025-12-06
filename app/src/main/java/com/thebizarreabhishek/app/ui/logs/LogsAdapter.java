@@ -50,10 +50,10 @@ public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.LogViewHolder>
         }
 
         public void bind(Message message) {
-            binding.tvSenderName.setText(message.getSender());
+            binding.tvName.setText(message.getSender());
             binding.tvIncomingMessage.setText("Received: " + message.getMessage());
             binding.tvReplyMessage.setText("Replied: " + message.getReply());
-            binding.tvTimestamp.setText(message.getTimestamp());
+            binding.tvTime.setText(message.getTimestamp());
 
             // Set first letter as avatar text
             if (message.getSender() != null && !message.getSender().isEmpty()) {

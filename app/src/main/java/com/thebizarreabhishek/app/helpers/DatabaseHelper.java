@@ -194,4 +194,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return messages;
     }
+
+    public int getMessagesCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        long count = android.database.DatabaseUtils.queryNumEntries(db, TABLE_MESSAGES);
+        db.close();
+        return (int) count;
+    }
 }
