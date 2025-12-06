@@ -93,6 +93,142 @@
                     android:layout_height="1dp"
                     android:background="@color/surface_variant"/>
 
+                <!-- Default Reply Message -->
+                <LinearLayout
+                    android:id="@+id/container_default_reply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground">
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Default Reply Message"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tv_default_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I am busy right now..."
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"
+                        android:maxLines="1"
+                        android:ellipsize="end"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/surface_variant"/>
+
+                <!-- Group Reply -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Group Reply"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Enable auto-reply for groups"
+                            android:textColor="@color/text_secondary"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+                   
+                   <com.google.android.material.switchmaterial.SwitchMaterial
+                       android:id="@+id/switch_group_reply"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_marginHorizontal="8dp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/surface_variant"/>
+
+                <!-- Reply Prefix -->
+                <LinearLayout
+                    android:id="@+id/container_reply_prefix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground">
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reply Prefix"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tv_reply_prefix"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[Bot]"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/surface_variant"/>
+
+                <!-- Max Reply -->
+                <LinearLayout
+                    android:id="@+id/container_max_reply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground">
+                    
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Max Reply Per Person"
+                        android:textColor="@color/text_primary"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/tv_max_reply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unlimited"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp"/>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/surface_variant"/>
+
                 <!-- Battery Optimization -->
                  <LinearLayout
                     android:layout_width="match_parent"

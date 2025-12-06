@@ -33,6 +33,7 @@ public class SettingsFragment extends Fragment {
 
         setupThemeToggle();
         setupBatteryOptimization();
+        setupGeneralSettings();
         setupAIEngine();
         setupAPIKey();
     }
@@ -42,6 +43,55 @@ public class SettingsFragment extends Fragment {
         binding.switchTheme.setOnCheckedChangeListener((buttonView, isChecked) -> {
             // Apply theme logic
         });
+    }
+
+    private void setupGeneralSettings() {
+        // Default Reply
+        String defaultReply = prefs.getString("default_reply_message", "I am busy right now, will talk to you later.");
+        binding.tvDefaultReply.setText(defaultReply);
+        binding.containerDefaultReply.setOnClickListener(v -> showEditTextDialog("Default Reply Message",
+                "default_reply_message", defaultReply, binding.tvDefaultReply));
+
+        // Group Reply
+        boolean isGroupEnabled = prefs.getBoolean("is_group_reply_enabled", false);
+        binding.switchGroupReply.setChecked(isGroupEnabled);
+        binding.switchGroupReply.setOnCheckedChangeListener(
+                (buttonView, isChecked) -> prefs.edit().putBoolean("is_group_reply_enabled", isChecked).apply());
+
+        // Prefix
+        String prefix = prefs.getString("reply_prefix_message", "[Bot]");
+        binding.tvReplyPrefix.setText(prefix);
+        binding.containerReplyPrefix.setOnClickListener(
+                v -> showEditTextDialog("Reply Prefix", "reply_prefix_message", prefix, binding.tvReplyPrefix));
+
+        // Max Reply
+        String maxReply = prefs.getString("max_reply", "100");
+        binding.tvMaxReply.setText(maxReply);
+        binding.containerMaxReply.setOnClickListener(
+                v -> showEditTextDialog("Max Reply Per Person", "max_reply", maxReply, binding.tvMaxReply));
+    }
+
+    private void showEditTextDialog(String title, String key, String currentValue, android.widget.TextView updateView) {
+        EditText input = new EditText(requireContext());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        input.setText(currentValue);
+
+        // For Max Reply, stick to number input if preferred, but existing code used
+        // String "100" so text is fine.
+        if (key.equals("max_reply"))
+            input.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(title)
+                .setView(input)
+                .setPositiveButton("Save", (dialog, which) -> {
+                    String newValue = input.getText().toString();
+                    prefs.edit().putString(key, newValue).apply();
+                    if (updateView != null)
+                        updateView.setText(newValue);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     private void setupBatteryOptimization() {
