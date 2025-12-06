@@ -79,15 +79,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
+                android:background="@drawable/chip_background"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@drawable/chip_background"
                     android:padding="16dp">
 
                     <LinearLayout
@@ -100,7 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Replies Sent"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="#B0B0B0"
                             android:textSize="14sp"/>
                         <ImageView
                             android:layout_width="20dp"
@@ -114,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
-                        android:textColor="@color/on_surface"
+                        android:textColor="@color/white"
                         android:textSize="32sp"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"/>
@@ -126,15 +128,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                app:cardBackgroundColor="@color/surface"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="2dp"
+                android:background="@drawable/chip_background"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="32dp"
+                app:cardElevation="0dp"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@drawable/chip_background"
                     android:padding="16dp">
 
                      <LinearLayout
@@ -147,13 +151,13 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Saved Time"
-                            android:textColor="@color/text_secondary"
+                            android:textColor="#B0B0B0"
                             android:textSize="14sp"/>
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:src="@drawable/ic_history_black_24dp"
-                            app:tint="@color/on_surface"/>
+                            app:tint="@color/white"/>
                     </LinearLayout>
 
                     <TextView
@@ -161,7 +165,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0m"
-                        android:textColor="@color/on_surface"
+                        android:textColor="@color/white"
                         android:textSize="32sp"
                         android:textStyle="bold"
                         android:layout_marginTop="8dp"/>
