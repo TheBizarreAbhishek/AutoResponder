@@ -36,6 +36,21 @@ public class SettingsFragment extends Fragment {
         setupGeneralSettings();
         setupAIEngine();
         setupAPIKey();
+        setupHelpFeedback();
+    }
+
+    private void setupHelpFeedback() {
+        binding.containerHelpFeedback.setOnClickListener(v -> {
+            try {
+                android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_VIEW,
+                        android.net.Uri.parse("https://t.me/dhongibaba_bot"));
+                startActivity(intent);
+            } catch (Exception e) {
+                android.widget.Toast
+                        .makeText(requireContext(), "Could not open Telegram", android.widget.Toast.LENGTH_SHORT)
+                        .show();
+            }
+        });
     }
 
     private void setupThemeToggle() {
