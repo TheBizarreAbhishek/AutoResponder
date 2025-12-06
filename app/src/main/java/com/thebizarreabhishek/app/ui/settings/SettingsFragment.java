@@ -140,26 +140,31 @@ public class SettingsFragment extends Fragment {
 
     private void setupAIEngine() {
         String currentModel = prefs.getString("llm_model", "gpt-4o");
-        binding.tvSelectedEngine.setText(currentModel + " >");
 
-        // Load model names from resources or hardcode for now based on legacy XML
-        final String[] models = { "gpt-3.5-turbo", "gpt-4", "gpt-4o", "gemini-1.5-flash", "claude-3-sonnet" };
+        // Find display name for current model
+        String[] modelEntries = getResources().getStringArray(R.array.llm_model_entries);
+        String[] modelValues = getResources().getStringArray(R.array.llm_model_values);
 
-        binding.tvSelectedEngine.getRootView().findViewById(R.id.tv_selected_engine).getParent().requestLayout(); // Force
-                                                                                                                  // refresh?
-                                                                                                                  // No,
-                                                                                                                  // just
-                                                                                                                  // set
-                                                                                                                  // listener
-                                                                                                                  // on
-                                                                                                                  // parent
+        String displayModel = currentModel;
+        for (int i = 0; i < modelValues.length; i++) {
+            if (modelValues[i].equals(currentModel)) {
+                if (i < modelEntries.length) {
+                    displayModel = modelEntries[i];
+                }
+                break;
+            }
+        }
+        binding.tvSelectedEngine.setText(displayModel + " >");
+
         ((View) binding.tvSelectedEngine.getParent()).setOnClickListener(v -> {
             new AlertDialog.Builder(requireContext())
                     .setTitle("Select AI Engine")
-                    .setItems(models, (dialog, which) -> {
-                        String selected = models[which];
-                        prefs.edit().putString("llm_model", selected).apply();
-                        binding.tvSelectedEngine.setText(selected + " >");
+                    .setItems(modelEntries, (dialog, which) -> {
+                        String selectedValue = modelValues[which];
+                        String selectedEntry = modelEntries[which];
+
+                        prefs.edit().putString("llm_model", selectedValue).apply();
+                        binding.tvSelectedEngine.setText(selectedEntry + " >");
                     })
                     .show();
         });
