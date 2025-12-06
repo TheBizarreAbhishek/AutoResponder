@@ -34,6 +34,9 @@ public class CustomReplyGenerator {
     private final String defaultReplyMessage;
     private final String aiReplyLanguage;
 
+    private final String botName;
+    private final String botLanguage;
+
     public CustomReplyGenerator(Context context, SharedPreferences sharedPreferences,
             WhatsAppMessageHandler whatsAppMessageHandler) {
         this.messageHandler = whatsAppMessageHandler;
@@ -42,6 +45,8 @@ public class CustomReplyGenerator {
         defaultReplyMessage = sharedPreferences.getString("default_reply_message",
                 context.getString(R.string.default_bot_message));
         aiReplyLanguage = sharedPreferences.getString("ai_reply_language", "English");
+        botName = sharedPreferences.getString("bot_name", "Abhishek Babu");
+        botLanguage = sharedPreferences.getString("bot_language", "English");
     }
 
     public void generateReply(String sender, String message, CustomReplyGenerator.OnReplyGeneratedListener listener) {
@@ -120,8 +125,7 @@ public class CustomReplyGenerator {
         StringBuilder prompt = new StringBuilder();
 
         // 5. Bot Identity & Language
-        String botName = sharedPreferences.getString("bot_name", "Abhishek Babu");
-        String botLanguage = sharedPreferences.getString("bot_language", "English");
+        // 5. Bot Identity & Language
 
         String languageInstruction = "Reply in " + botLanguage + ".";
         if (botLanguage.equalsIgnoreCase("Hinglish")) {
