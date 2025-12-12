@@ -34,14 +34,17 @@ public class GeminiReplyGenerator {
 
     private final String customPrompt;
 
+    private final Context context;
+
     public GeminiReplyGenerator(Context context, SharedPreferences sharedPreferences,
             WhatsAppMessageHandler whatsAppMessageHandler) {
+        this.context = context;
         this.messageHandler = whatsAppMessageHandler;
         API_KEY = sharedPreferences.getString("api_key", "not-set").trim();
         LLM_MODEL = sharedPreferences.getString("llm_model", "gemini-1.5-flash");
         defaultReplyMessage = sharedPreferences.getString("default_reply_message",
                 context.getString(R.string.default_bot_message));
-        aiReplyLanguage = sharedPreferences.getString("bot_language", "English");
+        aiReplyLanguage = sharedPreferences.getString("ai_reply_language", "English");
         botName = sharedPreferences.getString("bot_name", "Yuji");
         customPrompt = sharedPreferences.getString("custom_prompt", "");
     }
@@ -73,6 +76,9 @@ public class GeminiReplyGenerator {
 
                 @Override
                 public void onFailure(@NonNull Throwable t) {
+                    new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> 
+                        android.widget.Toast.makeText(context, "Gemini Error: " + t.getMessage(), android.widget.Toast.LENGTH_LONG).show()
+                    );
                     listener.onReplyGenerated(defaultReplyMessage);
                     Log.e(TAG, "onFailure: ", t);
                 }

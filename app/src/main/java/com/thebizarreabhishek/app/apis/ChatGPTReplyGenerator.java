@@ -51,7 +51,7 @@ public class ChatGPTReplyGenerator {
         LLM_MODEL = sharedPreferences.getString("llm_model", "gpt-4o-mini");
         defaultReplyMessage = sharedPreferences.getString("default_reply_message",
                 context.getString(R.string.default_bot_message));
-        aiReplyLanguage = sharedPreferences.getString("bot_language", "English");
+        aiReplyLanguage = sharedPreferences.getString("ai_reply_language", "English");
         botName = sharedPreferences.getString("bot_name", "Yuji");
         customPrompt = sharedPreferences.getString("custom_prompt", "");
     }

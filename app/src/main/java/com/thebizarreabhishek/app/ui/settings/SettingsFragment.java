@@ -180,7 +180,7 @@ public class SettingsFragment extends Fragment {
                 v -> showEditTextDialog("Bot Name", "bot_name", botName, binding.tvBotNameSetting));
 
         // Bot Language
-        String currentLanguage = prefs.getString("bot_language", "English");
+        String currentLanguage = prefs.getString("ai_reply_language", "English");
         binding.tvBotLanguageSetting.setText(currentLanguage + " >");
         binding.containerBotLanguage.setOnClickListener(v -> {
             String[] languages = getResources().getStringArray(R.array.languages);
@@ -189,7 +189,7 @@ public class SettingsFragment extends Fragment {
                     .setItems(languages, (dialog, which) -> {
                         String selectedLanguage = languages[which];
                         binding.tvBotLanguageSetting.setText(selectedLanguage + " >");
-                        prefs.edit().putString("bot_language", selectedLanguage).apply();
+                        prefs.edit().putString("ai_reply_language", selectedLanguage).apply();
                     })
                     .show();
         });

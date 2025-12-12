@@ -45,7 +45,7 @@ public class CustomReplyGenerator {
                 context.getString(R.string.default_bot_message));
 
         botName = sharedPreferences.getString("bot_name", "Abhishek Babu");
-        botLanguage = sharedPreferences.getString("bot_language", "English");
+        botLanguage = sharedPreferences.getString("ai_reply_language", "English");
     }
 
     public void generateReply(String sender, String message, CustomReplyGenerator.OnReplyGeneratedListener listener) {
