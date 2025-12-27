@@ -322,18 +322,6 @@
                 android:layout_height="wrap_content"
                 android:padding="20dp">
 
-                <ImageView
-                    android:id="@+id/iv_platforms_icon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_apps"
-                    android:padding="8dp"
-                    android:background="@drawable/circle_background"
-                    app:tint="@color/primary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
                 <TextView
                     android:id="@+id/tv_platforms_title"
                     android:layout_width="0dp"
@@ -342,33 +330,33 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    app:layout_constraintStart_toEndOf="@id/iv_platforms_icon"
-                    app:layout_constraintEnd_toStartOf="@id/iv_platforms_arrow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_platforms_select"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
                     android:id="@+id/tv_platforms_desc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="WhatsApp enabled"
+                    android:text="Configure auto-reply apps"
                     android:textColor="#B0B0B0"
                     android:textSize="14sp"
                     android:layout_marginTop="4dp"
-                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
-                    app:layout_constraintStart_toEndOf="@id/iv_platforms_icon"
-                    app:layout_constraintEnd_toStartOf="@id/iv_platforms_arrow"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tv_platforms_select"
                     app:layout_constraintTop_toBottomOf="@id/tv_platforms_title"
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
-                <ImageView
-                    android:id="@+id/iv_platforms_arrow"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward"
-                    app:tint="#B0B0B0"
+                <TextView
+                    android:id="@+id/tv_platforms_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select"
+                    android:textColor="@color/primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"/>
@@ -389,7 +377,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tv_sub_footer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_natural_delay" />
+            app:layout_constraintTop_toBottomOf="@+id/card_platforms" />
 
         <TextView
             android:id="@+id/tv_sub_footer"

@@ -54,22 +54,30 @@ public class HomeFragment extends Fragment {
                 .inflate(R.layout.dialog_platforms, null);
         builder.setView(dialogView);
 
-        // Setup WhatsApp switch (only functional platform for now)
-        com.google.android.material.switchmaterial.SwitchMaterial switchWhatsapp = 
-                dialogView.findViewById(R.id.switch_whatsapp);
         SharedPreferences prefs = androidx.preference.PreferenceManager.getDefaultSharedPreferences(requireContext());
-        boolean whatsappEnabled = prefs.getBoolean("platform_whatsapp", true);
-        switchWhatsapp.setChecked(whatsappEnabled);
 
-        switchWhatsapp.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            prefs.edit().putBoolean("platform_whatsapp", isChecked).apply();
-        });
+        // Setup all platform switches
+        setupPlatformSwitch(dialogView, R.id.switch_whatsapp, "platform_whatsapp", true, prefs);
+        setupPlatformSwitch(dialogView, R.id.switch_whatsapp_business, "platform_whatsapp_business", false, prefs);
+        setupPlatformSwitch(dialogView, R.id.switch_telegram, "platform_telegram", false, prefs);
+        setupPlatformSwitch(dialogView, R.id.switch_instagram, "platform_instagram", false, prefs);
+        setupPlatformSwitch(dialogView, R.id.switch_snapchat, "platform_snapchat", false, prefs);
+        setupPlatformSwitch(dialogView, R.id.switch_twitter, "platform_twitter", false, prefs);
 
         android.app.AlertDialog dialog = builder.create();
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
         }
         dialog.show();
+    }
+
+    private void setupPlatformSwitch(View dialogView, int switchId, String prefKey, boolean defaultValue, SharedPreferences prefs) {
+        com.google.android.material.switchmaterial.SwitchMaterial platformSwitch = dialogView.findViewById(switchId);
+        boolean isEnabled = prefs.getBoolean(prefKey, defaultValue);
+        platformSwitch.setChecked(isEnabled);
+        platformSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            prefs.edit().putBoolean(prefKey, isChecked).apply();
+        });
     }
 
     private void loadCustomPrompt() {
