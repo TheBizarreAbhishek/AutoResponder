@@ -68,6 +68,13 @@ public class MyNotificationListenerService extends NotificationListenerService {
             String title = extras.getString(Notification.EXTRA_TITLE);
             CharSequence text = extras.getCharSequence(Notification.EXTRA_TEXT);
 
+            // Check if sender is blocked
+            Set<String> blockedContacts = sharedPreferences.getStringSet("blocked_contacts", new HashSet<>());
+            if (title != null && blockedContacts.contains(title)) {
+                Log.d(TAG, "Sender is blocked: " + title);
+                return;
+            }
+
             // Check if we've already responded to this message
             if (respondedMessages.contains(messageId)) {
                 return;
