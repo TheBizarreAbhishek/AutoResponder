@@ -226,4 +226,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return totalWords;
     }
+
+    public List<com.thebizarreabhishek.app.models.ContactSummary> getUniqueSenders() {
+        List<com.thebizarreabhishek.app.models.ContactSummary> contacts = new ArrayList<>();
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+
+        try {
+            db = this.getReadableDatabase();
+            // Get unique senders with their latest message, timestamp, and message count
+            String query = "SELECT " + COLUMN_SENDER + ", " +
+                    "(SELECT " + COLUMN_MESSAGE + " FROM " + TABLE_MESSAGES + " m2 WHERE m2." + COLUMN_SENDER + " = m1." + COLUMN_SENDER + " ORDER BY " + COLUMN_TIMESTAMP + " DESC LIMIT 1) as lastMessage, " +
+                    "MAX(" + COLUMN_TIMESTAMP + ") as lastTimestamp, " +
+                    "COUNT(*) as messageCount " +
+                    "FROM " + TABLE_MESSAGES + " m1 " +
+                    "GROUP BY " + COLUMN_SENDER + " " +
+                    "ORDER BY lastTimestamp DESC";
+            cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    String senderName = cursor.getString(0);
+                    String lastMessage = cursor.getString(1);
+                    String lastTimestamp = cursor.getString(2);
+                    int messageCount = cursor.getInt(3);
+
+                    com.thebizarreabhishek.app.models.ContactSummary contact = 
+                        new com.thebizarreabhishek.app.models.ContactSummary(senderName, lastMessage, lastTimestamp, messageCount);
+                    contacts.add(contact);
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "getUniqueSenders: ", e);
+        } finally {
+            if (cursor != null)
+                cursor.close();
+            if (db != null && db.isOpen())
+                db.close();
+        }
+        return contacts;
+    }
 }

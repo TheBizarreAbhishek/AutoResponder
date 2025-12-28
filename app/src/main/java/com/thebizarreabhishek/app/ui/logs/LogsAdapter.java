@@ -5,62 +5,78 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.thebizarreabhishek.app.databinding.ItemLogBinding;
-import com.thebizarreabhishek.app.models.Message;
+import com.thebizarreabhishek.app.models.ContactSummary;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.LogViewHolder> {
+public class LogsAdapter extends RecyclerView.Adapter<LogsAdapter.ContactViewHolder> {
 
-    private List<Message> messageList = new ArrayList<>();
+    private List<ContactSummary> contactList = new ArrayList<>();
+    private OnContactClickListener listener;
 
-    public void setMessages(List<Message> messages) {
-        this.messageList = messages;
+    public interface OnContactClickListener {
+        void onContactClick(ContactSummary contact);
+    }
+
+    public void setOnContactClickListener(OnContactClickListener listener) {
+        this.listener = listener;
+    }
+
+    public void setContacts(List<ContactSummary> contacts) {
+        this.contactList = contacts;
         notifyDataSetChanged();
     }
 
-    public void clearMessages() {
-        this.messageList.clear();
+    public void clearContacts() {
+        this.contactList.clear();
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
-    public LogViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemLogBinding binding = ItemLogBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new LogViewHolder(binding);
+        return new ContactViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LogViewHolder holder, int position) {
-        Message message = messageList.get(position);
-        holder.bind(message);
+    public void onBindViewHolder(@NonNull ContactViewHolder holder, int position) {
+        ContactSummary contact = contactList.get(position);
+        holder.bind(contact);
     }
 
     @Override
     public int getItemCount() {
-        return messageList.size();
+        return contactList.size();
     }
 
-    static class LogViewHolder extends RecyclerView.ViewHolder {
+    class ContactViewHolder extends RecyclerView.ViewHolder {
         private final ItemLogBinding binding;
 
-        public LogViewHolder(ItemLogBinding binding) {
+        public ContactViewHolder(ItemLogBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        public void bind(Message message) {
-            binding.tvName.setText(message.getSender());
-            binding.tvIncomingMessage.setText("Received: " + message.getMessage());
-            binding.tvReplyMessage.setText("Replied: " + message.getReply());
-            binding.tvTime.setText(message.getTimestamp());
+        public void bind(ContactSummary contact) {
+            binding.tvName.setText(contact.getSenderName());
+            binding.tvLastMessage.setText(contact.getLastMessage());
+            binding.tvTime.setText(contact.getLastTimestamp());
+            binding.tvCount.setText(String.valueOf(contact.getMessageCount()));
 
             // Set first letter as avatar text
-            if (message.getSender() != null && !message.getSender().isEmpty()) {
-                binding.tvAvatar.setText(String.valueOf(message.getSender().charAt(0)).toUpperCase());
+            if (contact.getSenderName() != null && !contact.getSenderName().isEmpty()) {
+                binding.tvAvatar.setText(String.valueOf(contact.getSenderName().charAt(0)).toUpperCase());
             } else {
                 binding.tvAvatar.setText("?");
             }
+
+            // Click listener
+            binding.getRoot().setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onContactClick(contact);
+                }
+            });
         }
     }
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,7 +7,7 @@
     android:layout_marginBottom="12dp"
     android:background="@drawable/chip_background"
     app:cardBackgroundColor="@android:color/transparent"
-    app:cardCornerRadius="32dp"
+    app:cardCornerRadius="24dp"
     app:cardElevation="0dp"
     app:strokeWidth="0dp">
 
@@ -23,7 +24,8 @@
             android:layout_height="48dp"
             android:background="@drawable/circle_background"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/tv_avatar"
@@ -47,74 +49,53 @@
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/tv_time"
+            app:layout_constraintEnd_toStartOf="@+id/tv_count"
             app:layout_constraintStart_toEndOf="@id/avatar_container"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Timestamp -->
+        <!-- Message Count Badge -->
         <TextView
-            android:id="@+id/tv_time"
+            android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today, 10:05 AM"
-            android:textColor="#B0B0B0"
+            android:background="@drawable/pill_button_background"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="5"
+            android:textColor="@color/white"
             android:textSize="12sp"
-            app:layout_constraintBaseline_toBaselineOf="@id/tv_name"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Incoming Message -->
+        <!-- Last Message Preview -->
         <TextView
-            android:id="@+id/tv_incoming_message"
+            android:id="@+id/tv_last_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:maxLines="1"
             android:ellipsize="end"
             android:text="Hey, are you free for a..."
-            android:textColor="#E0E0E0"
+            android:textColor="#B0B0B0"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_name"
             app:layout_constraintTop_toBottomOf="@id/tv_name" />
 
-        <!-- Reply Container -->
-        <LinearLayout
-            android:layout_width="0dp"
+        <!-- Timestamp -->
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            app:layout_constraintEnd_toStartOf="@id/iv_status"
+            android:layout_marginTop="4dp"
+            android:text="Today, 10:05 AM"
+            android:textColor="#808080"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/tv_name"
-            app:layout_constraintTop_toBottomOf="@id/tv_incoming_message">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:src="@drawable/ic_smart_toy_black_24dp"
-                app:tint="@color/primary"
-                android:layout_marginEnd="4dp"/>
-
-            <TextView
-                android:id="@+id/tv_reply_message"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="I'm currently driving..."
-                android:textColor="@color/primary"
-                android:textSize="14sp"
-                android:maxLines="1"
-                android:ellipsize="end"/>
-        </LinearLayout>
-        
-         <!-- Status Icon -->
-        <ImageView
-            android:id="@+id/iv_status"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:src="@drawable/ic_check_circle"
-            app:tint="@color/success"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_last_message" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
