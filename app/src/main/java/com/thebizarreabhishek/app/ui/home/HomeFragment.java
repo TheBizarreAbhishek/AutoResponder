@@ -260,7 +260,9 @@ public class HomeFragment extends Fragment {
             case "gpt-4-turbo": return "GPT-4 Turbo";
             case "o3-mini": return "O3 Mini";
             case "deepseek-chat": return "DeepSeek V3";
-            case "grok-beta": return "Grok Beta";
+            case "grok-3": return "Grok 3";
+            case "grok-3-mini": return "Grok 3 Mini";
+            case "grok-2-1212": return "Grok 2";
             case "custom-gpt-4o": return "Custom API";
             default: return modelId;
         }

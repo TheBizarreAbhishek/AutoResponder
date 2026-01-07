@@ -11,7 +11,9 @@
         <item>GPT-4 Turbo</item>
         <item>O3 Mini</item>
         <item>DeepSeek Chat (V3)</item>
-        <item>Grok Beta</item>
+        <item>Grok 3</item>
+        <item>Grok 3 Mini</item>
+        <item>Grok 2</item>
         <item>Custom API</item>
     </string-array>
 
@@ -26,7 +28,9 @@
         <item>gpt-4-turbo</item>
         <item>o3-mini</item>
         <item>deepseek-chat</item>
-        <item>grok-beta</item>
+        <item>grok-3</item>
+        <item>grok-3-mini</item>
+        <item>grok-2-1212</item>
         <item>custom-gpt-4o</item>
     </string-array>
 
